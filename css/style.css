@@ -58,6 +58,21 @@ header nav ul li a {
     flex-direction: column; /* Organiza los elementos en una columna. */
 }
 
+.containercursos{
+    display: flex; /* Activa Flexbox para esta sección. */
+    justify-content: center; /* Centra horizontalmente el contenido dentro de la sección. */
+    align-items: center; /* Centra verticalmente los elementos dentro de la sección. */
+    flex-direction: column; /* Organiza los elementos en una columna. */
+}
+
+.btn-eliminar {
+    margin-left: 10px;
+    color: red;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+}
+
 footer {
     margin-top: 20px;
     background-color: black;
