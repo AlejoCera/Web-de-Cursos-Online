@@ -1,0 +1,77 @@
+/* https://www.youtube.com/watch?v=nBCvLJjcFNk (Centrado de elementos) */ 
+
+header {
+    background-color: black;
+    padding: 10px;
+}
+
+header nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: flex-end; /* Alinear a la derecha */
+}
+
+header nav ul li {
+    margin-left: 20px;
+}
+
+header nav ul li a {
+    color: white; /* Cambiar el color del texto a blanco */
+    text-decoration: none;
+}
+
+/* https://www.freecodecamp.org/espanol/news/imagen-de-fondo-css-con-codigo-de-ejemplo-html/ (Insertar una imagen de fondo) */
+.contenido-con-fondo {
+    background-image: url("/img/white-1842315_640.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#Inicio {
+    display: flex; /* Activa Flexbox para esta sección, permitiendo un control más fácil del diseño. */
+    justify-content: center; /* Centra horizontalmente el contenido dentro de la sección. */
+}
+
+/* Estilos para la sección de Sobre Nosotros */
+#SobreNosotros {
+    display: flex; /* Activa Flexbox para esta sección. */
+    justify-content: center; /* Centra horizontalmente el contenido dentro de la sección. */
+    align-items: center; /* Centra verticalmente los elementos dentro de la sección. */
+    flex-direction: column; /* Organiza los elementos en una columna (uno debajo del otro). */
+}
+
+/* Estilos para la sección de Cursos */
+#Cursos {
+    display: flex; /* Activa Flexbox para esta sección. */
+    justify-content: center; /* Centra horizontalmente el contenido dentro de la sección. */
+    align-items: center; /* Centra verticalmente los elementos dentro de la sección. */
+    flex-direction: column; /* Organiza los elementos en una columna. */
+}
+
+/* Estilos para la sección de Contacto */
+#Contacto {
+    display: flex; /* Activa Flexbox para esta sección. */
+    justify-content: center; /* Centra horizontalmente el contenido dentro de la sección. */
+    align-items: center; /* Centra verticalmente los elementos dentro de la sección. */
+    flex-direction: column; /* Organiza los elementos en una columna. */
+}
+
+footer {
+    margin-top: 20px;
+    background-color: black;
+    color: white;
+    padding: 20px;
+    text-align: center; /* Centrar el contenido */
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px; /* Espaciado entre enlaces */
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
