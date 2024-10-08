@@ -1,3 +1,4 @@
 # Web-de-Cursos-Online
 Sistema Web de Cursos Online
-https://velvety-longma-587fab.netlify.app/
+https://webdecursosonline.netlify.app/  (Usuario)
+https://webdecursosonline.netlify.app/iftsad24  (Administración)
