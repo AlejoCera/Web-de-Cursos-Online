@@ -16,34 +16,79 @@ function obtenerCursosDeLocalStorage() {
 }
 
 // Función para agregar un curso al DOM
-function agregarCursoAlDOM(curso) {
+function agregarCursoAlDOM(curso, index) {
     const li = document.createElement('li');
-    li.textContent = curso;
+    li.textContent = curso.nombre;
 
-    // Crear botón para eliminar
+    // Crear botón para eliminar físicamente (ya lo tienes implementado)
     const btnEliminar = document.createElement('button');
     btnEliminar.textContent = 'X'; // Texto del botón de eliminar
     btnEliminar.classList.add('btn-eliminar'); // Añadir una clase para estilo
-    li.appendChild(btnEliminar); // Añadir el botón dentro del <li>
-    
+    li.appendChild(btnEliminar); 
+
+    // Crear botón para tachar (borrado lógico)
+    const btnTachar = document.createElement('button');
+    btnTachar.textContent = curso.tachado ? 'Deshacer tachado' : 'Tachar';
+    btnTachar.classList.add('btn-tachar');
+    li.appendChild(btnTachar);
+
+    // Crear botón para editar
+    const btnEditar = document.createElement('button');
+    btnEditar.textContent = 'Editar';
+    btnEditar.classList.add('btn-editar');
+    li.appendChild(btnEditar);
+
+    // Aplicar tachado visual si el curso está marcado como "tachado"
+    if (curso.tachado) {
+        li.style.textDecoration = 'line-through';
+    }
+
     // Añadir el <li> dentro del <ul>
     ul.appendChild(li);
-    
-    // Ocultar el mensaje de "lista vacía"
-    mensajeVacio.style.display = 'none';
 
-    // Evento para eliminar curso
+    // Evento para eliminar curso físicamente (ya lo tienes implementado)
     btnEliminar.addEventListener('click', function() {
-        li.remove(); // Eliminar el <li> del DOM
-
-        // Eliminar curso del Local Storage
         const cursos = obtenerCursosDeLocalStorage();
-        const nuevosCursos = cursos.filter(c => c !== curso);
-        guardarCursosEnLocalStorage(nuevosCursos);
+        cursos.splice(index, 1); // Eliminar el curso completamente
+        guardarCursosEnLocalStorage(cursos);
+        location.reload(); // Recargar la página para ver los cambios
+    });
 
-        if (ul.children.length === 0) {
-            mensajeVacio.style.display = 'block'; // Mostrar mensaje si la lista queda vacía
-        }
+    // Evento para tachar el curso (borrado lógico)
+    btnTachar.addEventListener('click', function() {
+        const cursos = obtenerCursosDeLocalStorage();
+        cursos[index].tachado = !cursos[index].tachado; // Alternar entre tachado y no tachado
+        guardarCursosEnLocalStorage(cursos);
+        location.reload(); // Recargar la página para ver los cambios
+    });
+
+    // Evento para editar el curso
+    btnEditar.addEventListener('click', function() {
+        const cursos = obtenerCursosDeLocalStorage();
+        
+        // Crear un input de texto para editar el curso
+        const inputEditar = document.createElement('input');
+        inputEditar.type = 'text';
+        inputEditar.value = curso.nombre;
+        
+        // Reemplazar el contenido del <li> con el campo de texto
+        li.innerHTML = ''; // Vaciar el contenido del <li>
+        li.appendChild(inputEditar);
+        
+        // Crear un botón para guardar los cambios
+        const btnGuardar = document.createElement('button');
+        btnGuardar.textContent = 'Guardar';
+        li.appendChild(btnGuardar);
+
+        // Guardar el nuevo nombre del curso
+        btnGuardar.addEventListener('click', function() {
+            const nuevoNombre = inputEditar.value.trim();
+            if (nuevoNombre !== '') {
+                cursos[index].nombre = nuevoNombre; // Actualizar el nombre del curso
+                guardarCursosEnLocalStorage(cursos); // Guardar los cambios en Local Storage
+                location.reload(); // Recargar la página para ver el cambio
+            }
+        });
     });
 }
 
@@ -51,7 +96,7 @@ function agregarCursoAlDOM(curso) {
 document.addEventListener('DOMContentLoaded', function() {
     const cursos = obtenerCursosDeLocalStorage(); // Obtener cursos guardados
     if (cursos.length > 0) {
-        cursos.forEach(curso => agregarCursoAlDOM(curso)); // Agregar cada curso al DOM
+        cursos.forEach((curso, index) => agregarCursoAlDOM(curso, index)); // Agregar cada curso al DOM
     } else {
         mensajeVacio.style.display = 'block'; // Mostrar mensaje si no hay cursos
     }
@@ -63,15 +108,13 @@ formAgregarCurso.addEventListener('submit', function(event) {
     
     const curso = inputCurso.value.trim(); // Obtener el valor del input
     if (curso !== "") {
-        // Agregar el curso al DOM
-        agregarCursoAlDOM(curso);
-        
         // Guardar el curso en Local Storage
         const cursos = obtenerCursosDeLocalStorage();
-        cursos.push(curso); // Añadir el nuevo curso al array
+        cursos.push({ nombre: curso, tachado: false }); // Añadir el curso con el estado "tachado" en falso
         guardarCursosEnLocalStorage(cursos); // Guardar el array actualizado en Local Storage
         
         // Limpiar el campo de texto
         inputCurso.value = '';
+        location.reload(); // Recargar la página para ver el nuevo curso
     }
 });
