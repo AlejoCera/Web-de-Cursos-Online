@@ -20,7 +20,7 @@ function agregarCursoAlDOM(curso, index) {
     const li = document.createElement('li');
     li.textContent = curso.nombre;
 
-    // Crear botón para eliminar físicamente (ya lo tienes implementado)
+    // Crear botón para eliminar físicamente
     const btnEliminar = document.createElement('button');
     btnEliminar.textContent = 'X'; // Texto del botón de eliminar
     btnEliminar.classList.add('btn-eliminar'); // Añadir una clase para estilo
@@ -46,7 +46,7 @@ function agregarCursoAlDOM(curso, index) {
     // Añadir el <li> dentro del <ul>
     ul.appendChild(li);
 
-    // Evento para eliminar curso físicamente (ya lo tienes implementado)
+    // Evento para eliminar curso físicamente
     btnEliminar.addEventListener('click', function() {
         const cursos = obtenerCursosDeLocalStorage();
         cursos.splice(index, 1); // Eliminar el curso completamente
