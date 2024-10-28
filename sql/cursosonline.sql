@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-10-2024 a las 23:39:46
+-- Tiempo de generación: 28-10-2024 a las 11:12:55
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -91,7 +91,7 @@ INSERT INTO `cursos` (`PK_CURSO`, `NOMBRE`, `DESCRIPCION`, `DURACION_HS`, `COSTO
 --
 
 CREATE TABLE `inscripciones` (
-  `PK_INCRIPCION` int(11) NOT NULL,
+  `PK_INSCRIPCION` int(11) NOT NULL,
   `FECHA` date NOT NULL,
   `ESTADO` enum('En proceso','Activa','Cancelada') NOT NULL,
   `FK_USUARIO` int(11) DEFAULT NULL,
@@ -102,7 +102,7 @@ CREATE TABLE `inscripciones` (
 -- Volcado de datos para la tabla `inscripciones`
 --
 
-INSERT INTO `inscripciones` (`PK_INCRIPCION`, `FECHA`, `ESTADO`, `FK_USUARIO`, `FK_AULAVIRTUAL`) VALUES
+INSERT INTO `inscripciones` (`PK_INSCRIPCION`, `FECHA`, `ESTADO`, `FK_USUARIO`, `FK_AULAVIRTUAL`) VALUES
 (1, '2023-10-05', 'En proceso', 3, 1),
 (2, '2023-10-06', 'Activa', 4, 2);
 
@@ -181,7 +181,7 @@ ALTER TABLE `cursos`
 -- Indices de la tabla `inscripciones`
 --
 ALTER TABLE `inscripciones`
-  ADD PRIMARY KEY (`PK_INCRIPCION`),
+  ADD PRIMARY KEY (`PK_INSCRIPCION`),
   ADD KEY `FK_USUARIO` (`FK_USUARIO`),
   ADD KEY `FK_AULAVIRTUAL` (`FK_AULAVIRTUAL`);
 
@@ -207,31 +207,31 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `aulasvirtuales`
 --
 ALTER TABLE `aulasvirtuales`
-  MODIFY `PK_AULAVIRTUAL` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `PK_AULAVIRTUAL` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `categorias`
 --
 ALTER TABLE `categorias`
-  MODIFY `PK_CATEGORIA` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `PK_CATEGORIA` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `cursos`
 --
 ALTER TABLE `cursos`
-  MODIFY `PK_CURSO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `PK_CURSO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `inscripciones`
 --
 ALTER TABLE `inscripciones`
-  MODIFY `PK_INCRIPCION` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `PK_INSCRIPCION` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `PK_ROL` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `PK_ROL` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`

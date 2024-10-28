@@ -28,31 +28,32 @@ const getCursoById = (req, res) => {
 
 // Crear un nuevo curso
 const createCurso = (req, res) => {
-    const { NOMBRE, DESCRIPCION, DURACION_HS, COSTO } = req.body;
-    const sql = 'INSERT INTO cursos (NOMBRE, DESCRIPCION, DURACION_HS, COSTO) VALUES (?, ?, ?, ?)';
-    db.query(sql, [NOMBRE, DESCRIPCION, DURACION_HS, COSTO], (error, result) => {
+    const { NOMBRE, DESCRIPCION, DURACION_HS, COSTO, FK_CATEGORIA } = req.body;
+    const sql = 'INSERT INTO cursos (NOMBRE, DESCRIPCION, DURACION_HS, COSTO, FK_CATEGORIA) VALUES (?, ?, ?, ?, ?)';
+    db.query(sql, [NOMBRE, DESCRIPCION, DURACION_HS, COSTO, FK_CATEGORIA], (error, result) => {
         if (error) {
             return res.status(500).json({ error: 'Error al crear el curso' });
         }
-        res.status(201).json({ id: result.insertId, NOMBRE, DESCRIPCION, DURACION_HS, COSTO });
+        res.status(201).json({ id: result.insertId, NOMBRE, DESCRIPCION, DURACION_HS, COSTO, FK_CATEGORIA });
     });
 };
 
 // Actualizar un curso
 const updateCurso = (req, res) => {
     const { id } = req.params;
-    const { NOMBRE, DESCRIPCION, DURACION_HS, COSTO } = req.body;
-    const sql = 'UPDATE cursos SET NOMBRE = ?, DESCRIPCION = ?, DURACION_HS = ?, COSTO = ? WHERE PK_CURSO = ?';
-    db.query(sql, [NOMBRE, DESCRIPCION, DURACION_HS, COSTO, id], (error, result) => {
+    const { NOMBRE, DESCRIPCION, DURACION_HS, COSTO, FK_CATEGORIA } = req.body;
+    const sql = 'UPDATE cursos SET NOMBRE = ?, DESCRIPCION = ?, DURACION_HS = ?, COSTO = ?, FK_CATEGORIA = ? WHERE PK_CURSO = ?';
+    db.query(sql, [NOMBRE, DESCRIPCION, DURACION_HS, COSTO, FK_CATEGORIA, id], (error, result) => {
         if (error) {
             return res.status(500).json({ error: 'Error al actualizar el curso' });
         }
         if (result.affectedRows === 0) {
             return res.status(404).json({ error: 'Curso no encontrado' });
         }
-        res.json({ id, NOMBRE, DESCRIPCION, DURACION_HS, COSTO });
+        res.json({ id, NOMBRE, DESCRIPCION, DURACION_HS, COSTO, FK_CATEGORIA });
     });
 };
+
 
 // Eliminar un curso
 const deleteCurso = (req, res) => {
