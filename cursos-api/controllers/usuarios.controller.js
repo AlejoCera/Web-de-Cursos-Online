@@ -1,4 +1,5 @@
 const db = require('../db/db');
+const bcrypt = require('bcrypt');
 
 // Obtener todos los usuarios
 const getAllUsuarios = (req, res) => {
@@ -28,7 +29,7 @@ const getUsuarioById = (req, res) => {
 
 // Crear un nuevo usuario
 const createUsuario = (req, res) => {
-    console.log(req.file); // Para verificar el archivo que se está subiendo
+    console.log(req.file); 
     let userimagen = "";
     
     if (req.file) {
@@ -36,9 +37,13 @@ const createUsuario = (req, res) => {
     }
 
     const { NOMBRE, EMAIL, CONTRASENA, FECHA_REGISTRO, FK_ROL } = req.body;
-    const sql = 'INSERT INTO usuarios (NOMBRE, EMAIL, CONTRASENA, FECHA_REGISTRO, FK_ROL, FOTO) VALUES (?, ?, ?, ?, ?, ?)';
-    
-    db.query(sql, [NOMBRE, EMAIL, CONTRASENA, FECHA_REGISTRO, FK_ROL, userimagen], (error, result) => {
+    //encriptación
+    bcrypt.hash(CONTRASENA,10,(err,hashedPassword)=>{
+        if (err){
+            return res.status(500).send("Error de encriptación")
+        }
+        const sql = 'INSERT INTO usuarios (NOMBRE, EMAIL, CONTRASENA, FECHA_REGISTRO, FK_ROL, FOTO) VALUES (?, ?, ?, ?, ?, ?)';
+    db.query(sql, [NOMBRE, EMAIL, hashedPassword, FECHA_REGISTRO, FK_ROL, userimagen], (error, result) => {
         if (error) {
             console.error('Error:', error); // Imprime el error para obtener más información
             return res.status(500).json({ error: 'Error al crear el usuario' });
@@ -47,13 +52,13 @@ const createUsuario = (req, res) => {
         res.status(201).json({ 
             id: result.insertId, 
             NOMBRE, 
-            EMAIL, 
-            CONTRASENA, 
+            EMAIL,
             FECHA_REGISTRO, 
             FK_ROL, 
             FOTO: userimagen
         });
     });
+    })
 };
 
 
