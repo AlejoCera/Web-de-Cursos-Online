@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-10-2024 a las 11:12:55
+-- Tiempo de generación: 05-11-2024 a las 20:00:11
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -137,20 +137,21 @@ CREATE TABLE `usuarios` (
   `PK_USUARIO` int(11) NOT NULL,
   `NOMBRE` varchar(100) NOT NULL,
   `EMAIL` varchar(100) NOT NULL,
-  `CONTRASEÑA` varchar(255) NOT NULL,
+  `CONTRASENA` varchar(255) DEFAULT NULL,
   `FECHA_REGISTRO` date NOT NULL,
-  `FK_ROL` int(11) DEFAULT NULL
+  `FK_ROL` int(11) DEFAULT NULL,
+  `FOTO` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`PK_USUARIO`, `NOMBRE`, `EMAIL`, `CONTRASEÑA`, `FECHA_REGISTRO`, `FK_ROL`) VALUES
-(1, 'Juan Perez', 'juan.perez@example.com', 'password123', '2023-10-01', 1),
-(2, 'Maria Gomez', 'maria.gomez@example.com', 'password456', '2023-10-02', 2),
-(3, 'Carlos Ramirez', 'carlos.ramirez@example.com', 'password789', '2023-10-03', 3),
-(4, 'Ana Lopez', 'ana.lopez@example.com', 'password000', '2023-10-04', 3);
+INSERT INTO `usuarios` (`PK_USUARIO`, `NOMBRE`, `EMAIL`, `CONTRASENA`, `FECHA_REGISTRO`, `FK_ROL`, `FOTO`) VALUES
+(1, 'Juan Perez', 'juan.perez@example.com', 'password123', '2023-10-01', 1, 'foto'),
+(2, 'Maria Gomez', 'maria.gomez@example.com', 'password456', '2023-10-02', 2, 'foto'),
+(3, 'Carlos Ramirez', 'carlos.ramirez@example.com', 'password789', '2023-10-03', 3, 'foto'),
+(4, 'Ana Lopez', 'ana.lopez@example.com', 'password000', '2023-10-04', 3, 'foto');
 
 --
 -- Índices para tablas volcadas
@@ -237,7 +238,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `PK_USUARIO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `PK_USUARIO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Restricciones para tablas volcadas

@@ -5,6 +5,7 @@ const categoriasRouter = require('./routers/categorias.router');
 const rolesRouter = require('./routers/roles.router');
 const aulasVirtualesRouter = require('./routers/aulasvirtuales.router');
 const inscripcionesRouter = require('./routers/inscripciones.router');
+const usuariosRouter = require('./routers/usuarios.router');
 
 // Middleware para manejar JSON
 app.use(express.json());
@@ -23,6 +24,9 @@ app.use('/aulasvirtuales', aulasVirtualesRouter);
 
 // Ruta principal para las inscripciones
 app.use('/inscripciones', inscripcionesRouter);
+
+// Ruta principal para los usuarios
+app.use('/usuarios', usuariosRouter);
 
 // Ruta principal
 app.get('/', (req, res) => {
