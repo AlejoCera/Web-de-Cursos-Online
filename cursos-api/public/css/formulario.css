@@ -1,0 +1,67 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100svh; /* svh = Small Viewport Height */
+    font-size: large;
+}
+
+main {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center;    /* Centra verticalmente */
+    flex-grow: 1;           /* Permite que main ocupe el espacio restante */
+    padding: 20px;          /* Espaciado interno para evitar bordes pegados */
+}
+
+/* Diseña el contenedor del formulario */
+.form-container {
+    width: 500px;           /* Ancho del formulario */
+    background-color: white;
+    border-radius: 10px;
+    padding: 50px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para darle relieve */
+}
+
+/* Diseño interno del formulario */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+form+p, form p{
+    text-align: center;
+}
+
+input, button {
+    border-radius: 4px; /* Bordes redondeados */
+    border: unset;      /* Elimina el borde predeterminado */
+    padding: 15px 30px; /* Espaciado interno del texto */
+    font-size: large;   /* Tamaño de fuente más grande */
+}
+
+button {
+    background-color: black;  /* Color de fondo */
+    color: white;             /* Color del texto */
+    font-weight: bold;        /* Texto en negrita */
+    cursor: pointer;          /* Cambia el cursor a una mano al pasar por encima */
+}
+
+.error{
+    color: darkred;
+}
+
+.invisible_visible{
+    display: none;
+}
+
+.sr-only{
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}

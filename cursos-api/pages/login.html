@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logueate</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/formulario.css">
+</head>
+<body>
+    <div class="contenido-con-fondo">
+        <header>
+            <h1 id="titulo-login-register">Formulario de login</h1>
+        </header>
+    </div>
+
+    <main>
+        <div class="form-container">
+            <h1>Iniciar Sesion</h1>
+            <form id="login-form">
+                <label for="user" class="sr-only"> Usuario</label>
+                <input type="text" name="user" id="user" placeholder="Ingresar Usuario">
+                <label for="password" class="sr-only">Contraseña</label>
+                <input type="password" name="password" id="password" placeholder="Ingresar Contraseña">
+                <button type="submit">Iniciar Sesion</button>
+                <p class="error invisible_visible">Error al iniciar su sesion</p>
+            </form>
+            <p>¿No estas registrado? <a href="/register">Registrarse</a></p>
+        </div>
+    </main>
+
+    <footer>
+        <div>
+            Redes sociales: 
+            <a href="https://www.facebook.com">Facebook</a> | 
+            <a href="https://twitter.com">Twitter</a> | 
+            <a href="https://www.instagram.com">Instagram</a>
+        </div>
+        <div>
+            &copy; 2024 - Todos los derechos reservados
+        </div>
+    </footer>
+    <script src="/js/login.js"></script>
+</body>
+</html>

@@ -5,7 +5,7 @@ const connection = mysql.createConnection({
     user: "root",
     password: "", 
     database: "cursosonline"
-});
+}).promise(); // .promise() habilita las promesas
 
 connection.connect((error) => {
     if (error) {
